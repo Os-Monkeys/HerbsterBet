@@ -15,7 +15,6 @@ def index():
 
 @app.route("/clique", methods=['POST'])
 def girar():
-    money -= 10.00
     simboloUm = rodarRoleta()
     simboloDois = rodarRoleta()
     simboloTres = rodarRoleta()
@@ -23,9 +22,10 @@ def girar():
     print(f'[{simboloUm}][{simboloDois}][{simboloTres}]')
 
     money = session.get('money', 500.00)
+    money -= 25.00
 
     if simboloUm == simboloDois == simboloTres:  # Jackpot
-        adicional = 50.50
+        adicional = 500.50
     elif simboloUm == simboloDois or simboloTres == simboloUm or simboloDois == simboloTres:
         adicional = 5.00
     else:
