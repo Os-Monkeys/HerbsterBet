@@ -5,8 +5,7 @@ app = Flask(__name__)
 
 #formar um caça-níquel
 def rodarRoleta():
-    numero = random.randint(1, 10)
-    return numero
+    return random.randint(1, 10)
 
 money = 500.00
 
@@ -21,6 +20,7 @@ def index():
 
 @app.route("/Clique", methods=['POST'])
 def girar():
+    money -= 10.00
     simboloUm = rodarRoleta()
     simboloDois = rodarRoleta()
     simboloTres = rodarRoleta()
