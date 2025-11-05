@@ -15,6 +15,7 @@ def index():
 
 @app.route("/clique", methods=['POST'])
 def girar():
+    money -= 10.00
     simboloUm = rodarRoleta()
     simboloDois = rodarRoleta()
     simboloTres = rodarRoleta()
