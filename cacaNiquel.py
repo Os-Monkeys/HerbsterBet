@@ -1,24 +1,19 @@
 import random
-from flask import Flask, render_template, request, flash, url_for, session 
+from flask import Flask, render_template, request, flash, url_for, session, redirect
 
 app = Flask(__name__)
+app.secret_key = "qualquer_coisa"
 
-#formar um caça-níquel
 def rodarRoleta():
     return random.randint(1, 10)
 
-money = 500.00
-
-simboloUm = rodarRoleta()
-simboloDois = rodarRoleta()
-simboloTres = rodarRoleta()
-
-
 @app.route('/')
 def index():
-    return render_template('index')
+    if 'money' not in session:
+        session['money'] = 500.00
+    return render_template('index.html', money=session['money'])
 
-@app.route("/Clique", methods=['POST'])
+@app.route("/clique", methods=['POST'])
 def girar():
     money -= 10.00
     simboloUm = rodarRoleta()
@@ -26,14 +21,21 @@ def girar():
     simboloTres = rodarRoleta()
 
     print(f'[{simboloUm}][{simboloDois}][{simboloTres}]')
-    if simboloUm == simboloDois and simboloUm == simboloTres: #Jackpot
-        adicional = 50.50
-        money += adicional
-    elif simboloUm == simboloDois or simboloTres == simboloUm or simboloDois == simboloTres: #Dois iguais
-        adicional = 5.00
-        money += adicional
-    else: #Todos diferentes
-        adicional = 0.00
-        money += adicional
 
-    print(f"Você recebeu R${adicional:.2f}!!!")
+    money = session.get('money', 500.00)
+
+    if simboloUm == simboloDois == simboloTres:  # Jackpot
+        adicional = 50.50
+    elif simboloUm == simboloDois or simboloTres == simboloUm or simboloDois == simboloTres:
+        adicional = 5.00
+    else:
+        adicional = 0.00
+
+    money += adicional
+    session['money'] = money
+
+    flash(f"Você recebeu R${adicional:.2f}!!!")
+    return redirect(url_for('index'))
+
+if __name__ == "__main__":
+    app.run(debug=True)
