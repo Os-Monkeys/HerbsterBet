@@ -2,11 +2,56 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CaliBet</title>
-    <link href="../css/index.css" rel="stylesheet">
+    <title>Caça-Níquel</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background: #111;
+            color: #eee;
+        }
+        .slot {
+            font-size: 3rem;
+            margin: 20px;
+        }
+        .money {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .msg {
+            margin-top: 15px;
+            color: #ffc107;
+        }
+    </style>
 </head>
 <body>
-    <h1>Dinheiro: </h1>
+    <h1>🎰 Caça-Níquel</h1>
+    <div class="money">Dinheiro: R$ {{ money|round(2) }}</div>
+    <form action="/clique" method="POST">
+        <button type="submit">Girar</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="msg">
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
 </body>
 </html>
