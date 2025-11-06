@@ -17,8 +17,8 @@ def login():
 
 @app.route('/')
 def index():
-    if user not in session:
-        return redirect(url_for('login.html'))
+    #if user not in session:
+    #    return redirect(url_for('login.html'))
     if 'money' not in session:
         session['money'] = 500.00
     return render_template('index.html', money=session['money'])
@@ -37,7 +37,7 @@ def girar():
     if simboloUm == simboloDois == simboloTres:  # Jackpot
         adicional = 500.50
     elif simboloUm == simboloDois or simboloTres == simboloUm or simboloDois == simboloTres:
-        adicional = 5.00
+        adicional = 30.00
     else:
         adicional = 0.00
 
