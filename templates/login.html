@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-    <form action="{{ url_for('index') }}" method="POST">
-        <button type="submit">Bem Vindo!</button>
+    <form method="POST">
+        <label for="Email">Email</label>
+        <input type="text" name="user" id="user1">
     </form>
 </body>
 </html>

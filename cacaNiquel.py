@@ -12,13 +12,16 @@ def rodarRoleta():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        return redirect(url_for('index'))
+        user = request.form['user']
+        if user in array:
+            session['user_perm'] = user
+            return redirect(url_for('index'))
     return render_template('login.html')
 
 @app.route('/')
 def index():
-    #if user not in session:
-    #    return redirect(url_for('login.html'))
+    if 'user_perm' not in session:
+        return redirect(url_for('login'))
     if 'money' not in session:
         session['money'] = 500.00
     return render_template('index.html', money=session['money'])
