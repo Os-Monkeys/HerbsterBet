@@ -1,4 +1,27 @@
- body {
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+input {
+    background: #222;
+    color: #eee;
+    border: 1px solid #555;
+    padding: 8px 10px;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 5px #28a745;
+}
+
+body {
     font-family: sans-serif;
     text-align: center;
     margin-top: 100px;
@@ -29,3 +52,17 @@ button:hover {
     margin-top: 15px;
     color: #ffc107;
     }
+
+.Saida{
+    background: #e90707;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.Saida:hover{
+    background: rgb(100, 61, 61);
+}
