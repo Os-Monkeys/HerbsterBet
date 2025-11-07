@@ -26,6 +26,12 @@ def index():
         session['money'] = 500.00
     return render_template('index.html', money=session['money'])
 
+
+@app.route('/logout')
+def logout():
+    session.clear
+    return redirect(url_for('login'))
+
 @app.route("/clique", methods=['POST'])
 def girar():
     simboloUm = rodarRoleta()
