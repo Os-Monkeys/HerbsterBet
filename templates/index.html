@@ -6,18 +6,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-    <button class="Saida" href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Sair</button>  
+  <form action="/logout">
+    <button class="Saida" type="submit">Sair</button>
+  </form>
     <div class=""><h1>🎰 Caça-Níquel</h1>
     <div class="money">Dinheiro: R$ {{ money|round(2) }}</div>
     <form action="/clique" method="POST">
         <button type="submit">Girar</button>
+    </form>
+    <form action="/Gerar" method="POST">
+      <label for="Dinheiro1"> Quanto Você Quer Gerar ? </label>
+      <input type="number" name="Dinheiro" id="1">
+      <button type="submit"> Gerar </button>
     </form>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <div class="msg">
           {% for message in messages %}
-            {{ message }}
+            <p>{{ message }}</p>
           {% endfor %}
         </div>
       {% endif %}

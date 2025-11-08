@@ -15,6 +15,7 @@ def login():
         user = request.form['user']
         if user in array:
             session['user_perm'] = user
+            session['money'] = 500
             return redirect(url_for('index'))
     return render_template('login.html')
 
@@ -22,14 +23,26 @@ def login():
 def index():
     if 'user_perm' not in session:
         return redirect(url_for('login'))
-    if 'money' not in session:
-        session['money'] = 500.00
+    return render_template('index.html', money=session['money'])
+
+@app.route('/Gerar', methods=['GET','POST'])
+def gerar():
+    if request.method == 'POST':
+        if request.form['Dinheiro'] == "":
+            flash("Valor Invalido")
+            return render_template('index.html', money=session['money'])
+        elif "-" in request.form['Dinheiro']:
+            flash("Valor Invalido")
+            return render_template('index.html', money=session['money'])
+        extra = float(request.form['Dinheiro'])
+        session['money'] = session.get('money', 0) + extra
+        flash(f"Você Gerou {extra} !")
     return render_template('index.html', money=session['money'])
 
 
 @app.route('/logout')
 def logout():
-    session.clear
+    session.clear()
     return redirect(url_for('login'))
 
 @app.route("/clique", methods=['POST'])
@@ -38,7 +51,7 @@ def girar():
     simboloDois = rodarRoleta()
     simboloTres = rodarRoleta()
 
-    print(f'[{simboloUm}][{simboloDois}][{simboloTres}]')
+    flash(f'[{simboloUm}][{simboloDois}][{simboloTres}]')
 
     money = session.get('money', 500.00)
     money -= 25.00
@@ -53,7 +66,12 @@ def girar():
     money += adicional
     session['money'] = money
 
-    flash(f"Você recebeu R${adicional:.2f}!!!")
+    flash(f"Você recebeu R${adicional:.2f}!!")
+    if money < 0:
+        flash(f"Você Esta {money} No Negativo Cuidado Se Cheagar A -100 Você É Expulso(a) !! ")
+    if money <= -100:
+        session.clear()
+        return redirect(url_for('login'))
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
