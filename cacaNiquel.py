@@ -28,8 +28,8 @@ def index():
 @app.route('/Gerar', methods=['GET','POST'])
 def gerar():
     if request.method == 'POST':
-        if request.form['Dinheiro'] == "" or "-" in request.form['Dinheiro']:
-            flash("Valor Invalido")
+        if request.form['Dinheiro'] == "" or "-" in request.form['Dinheiro'] or int(request.form['Dinheiro']) >= 1000:
+            flash("Valor Invalido/Negativo/Muito Alto")
             return render_template('index.html', money=session['money'])
         extra = float(request.form['Dinheiro'])
         session['money'] = session.get('money', 0) + extra
