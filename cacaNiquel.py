@@ -28,10 +28,7 @@ def index():
 @app.route('/Gerar', methods=['GET','POST'])
 def gerar():
     if request.method == 'POST':
-        if request.form['Dinheiro'] == "":
-            flash("Valor Invalido")
-            return render_template('index.html', money=session['money'])
-        elif "-" in request.form['Dinheiro']:
+        if request.form['Dinheiro'] == "" or "-" in request.form['Dinheiro']:
             flash("Valor Invalido")
             return render_template('index.html', money=session['money'])
         extra = float(request.form['Dinheiro'])
