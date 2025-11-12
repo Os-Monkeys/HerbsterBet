@@ -20,9 +20,9 @@ Não envolve apostas reais, nem coleta de dados, nem qualquer uso comercial
 
 🐒 Os Monkeys – Sendo compostos por:
 
-Enzo - Front end
-Etevaldo - Back end
-Jessé - Front end
-Jorge - Back end
-Caliel - Mascote
+Enzo - Front end\
+Etevaldo - Back end\
+Jessé - Front end\
+Jorge - Back end\
+Caliel - Mascote\
 João Victor Ribeiro - Existe
