@@ -69,7 +69,7 @@ def girar():
 
     flash(f"Você recebeu R${adicional:.2f}!!")
     if money < 0:
-        flash(f"Você está {money} no negativo. Cuidado! Se chegar a -100 você será expulso(a)!!")
+        flash(f"Você está com {money}. Cuidado!!! Se chegar a -100 você será expulso(a)!!!")
     if money <= -100:
         session.clear()
         return redirect(url_for('login'))
