@@ -6,20 +6,28 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-  <form action="/logout">
-    <button class="Saida" type="submit">Sair</button>
-  </form>
+
+    <form action="/logout">
+        <button class="Saida" type="submit">Sair</button>
+    </form>
+
     <h1>🎰 Caça-Níquel</h1>
-    <div class="money">Dinheiro: R$ {{ money|round(2) }}</div>
+
+    <div class="money">
+        Dinheiro: R$ {{ money|round(2) }}
+    </div>
+
     <form action="/clique" method="POST">
         <button type="submit">Girar</button>
     </form>
+
     <form action="/Gerar" method="POST">
-      <label for="Dinheiro1"> Quanto você quer gerar? </label>
-      <input type="number" name="Dinheiro" id="1">
-      <button type="submit"> Gerar </button>
+        <label>Quanto você quer gerar?</label>
+        <input type="number" name="Dinheiro">
+        <button type="submit">Gerar</button>
     </form>
 
+    <!-- Mensagens -->
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <div class="msg">
@@ -29,5 +37,15 @@
         </div>
       {% endif %}
     {% endwith %}
+
+    <!-- Imagens de vitória/derrota -->
+    {% if resultado == 'win' %}
+        <img src="./static/imagens/win.jpg" class="resultado">
+    {% elif resultado == 'lose' %}
+        <img src="./static/imagens/lose.jpg" class="resultado">
+    {% elif resultado == 'jackpot' %}
+        <img src="./static/imagens/jackpot.jpg" class="resultado">
+    {% endif %}
+
 </body>
 </html>
