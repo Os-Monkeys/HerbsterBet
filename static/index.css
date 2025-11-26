@@ -30,8 +30,11 @@ body {
     font-family: sans-serif;
     text-align: center;
     margin-top: 100px;
-    background: #111;
-    color: #eee;
+    background-image: url("imagens/fundo1.avif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
 .slot {
     font-size: 3rem;
@@ -40,6 +43,7 @@ body {
 .money {
     font-size: 1.5rem;
     margin-bottom: 20px;
+    color: aliceblue;
 }
 button {
     background: #28a745;
@@ -71,6 +75,7 @@ button:hover {
 .Saida:hover{
     background: rgb(100, 61, 61);
 }
+
 
 
     

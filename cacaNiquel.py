@@ -2,7 +2,7 @@ import random
 from flask import Flask, render_template, request, flash, url_for, session, redirect
 
 # Permissões básicas
-array = dict(zip(['jusbiscreudo', 'Enxi', 'JesseChad'], [1, 2, 3]))
+array = dict(zip(['jusbiscreudo', 'Enxi', 'JesseChad',], [1, 2, 3]))
 
 app = Flask(__name__)
 app.secret_key = "qualquer_coisa"
